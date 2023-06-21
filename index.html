@@ -128,41 +128,43 @@
             return shuffledArray;
         }
         function getUniqueGroups(array, groupSize, pop) {
-            //   for (let a = 0; a < pop; a++) {
-            const periodos = [];
-            for (let i = 0; i < prof_disc.length; i += 20) {
-                const periodo = prof_disc.slice(i, i + 20);
-                periodos.push(periodo);
-            }
-            let cont = 0;
-            const shuffledArray = [];
-            while (cont < 5) {
-                const shuffledPeriod = shuffleArray(periodos[cont]);
-                shuffledArray.push(...shuffledPeriod);
-                cont++;
-            }
-            const groups = [];
+            for (let a = 0; a < pop; a++) {
+                const periodos = [];
+                for (let i = 0; i < prof_disc.length; i += 20) {
+                    const periodo = prof_disc.slice(i, i + 20);
+                    periodos.push(periodo);
+                }
+                let cont = 0;
+                const shuffledArray = [];
+                while (cont < 5) {
+                    const shuffledPeriod = shuffleArray(periodos[cont]);
+                    shuffledArray.push(...shuffledPeriod);
+                    cont++;
+                }
+                const groups = [];
 
-            while (shuffledArray.length > 0) {
-                const group = shuffledArray.splice(0, groupSize);
-                groups.push(group);
+                while (shuffledArray.length > 0) {
+                    const group = shuffledArray.splice(0, groupSize);
+                    groups.push(group);
+                }
+                validation(groups)
             }
-            validation(groups)
-            //console.log(groups, "saida")
         }
-        //  }
 
 
 
 
         function validation(group) {
             let contadorValidateFail = 0
-            let contadorValideSucess = 0
+
             let primeiro_periodo = [];
             let segundo_periodo = [];
             let terceiro_periodo = [];
             let quarto_periodo = [];
             let quinto_periodo = [];
+
+
+
             for (let i = 0; i < 25; i++) {
                 if (i < 5) {
                     primeiro_periodo.push(group[i]);
@@ -221,11 +223,7 @@
                     //console.log(value);
                 }
             }
-            console.log(nameProf1)
-            console.log(nameProf2)
-            console.log(nameProf3)
-            console.log(nameProf4)
-            console.log(nameProf5)
+
 
             var conflito = 0;
             let nameCop
@@ -249,24 +247,30 @@
                 }
             }
 
-            console.log("Número de conflitos encontrados:", conflito);
+            //console.log("Número de conflitos encontrados:", conflito);
+            //todos os arrays com nome e materia do professor
+            const allPeriods = primeiro_periodo.concat(segundo_periodo, terceiro_periodo, quarto_periodo, quinto_periodo);
+            allPeriods.push(conflito)
+            //console.log(allPeriods)
+
+            //todas as combinações de horarios em um array
+            const allCombinations =[]
+            allCombinations.push(allPeriods)
+            console.log(allCombinations)
+
+            //Ordenar os arrays
 
 
-/*
 
-            console.log(primeiro_periodo, "PRIMEIRO")
-            console.log(segundo_periodo, "SEGUNDO")
-            console.log(terceiro_periodo, "TERCEIRO")
-            console.log(quarto_periodo, "QUARTO")
-            console.log(quinto_periodo, "QUINTO")
-*/
+
+
 
             // arrayNota.push(group)
             //cont.push(contadorValidateFail)
         }
 
-        const groups = getUniqueGroups(prof_disc, 4);
-    //    const valid = validation(groups)
+        const groups = getUniqueGroups(prof_disc, 4, 10);
+            //    const valid = validation(groups)
     </script>
 </head>
 
