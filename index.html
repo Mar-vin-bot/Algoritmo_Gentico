@@ -164,7 +164,7 @@
             let quinto_periodo = [];
 
 
-
+            //separando o array em 5 divididos por periodo
             for (let i = 0; i < 25; i++) {
                 if (i < 5) {
                     primeiro_periodo.push(group[i]);
@@ -179,6 +179,7 @@
                 }
             }
 
+            //separa os nomes dos professores das materias ministradas
             let nameProf1 = [];
             for (let i = 0; i < primeiro_periodo.length; i++) {
                 for (let j = 0; j < primeiro_periodo[i].length; j++) {
@@ -225,9 +226,15 @@
             }
 
 
-            var conflito = 0;
+            var conflito1 = 0;
+            var conflito2 = 0;
+            var conflito3 = 0;
+            var conflito4 = 0;
+            //var conflito5 = 0;
+            var conflitoTotal = 0;
             let nameCop
 
+            //validação primeiro com todos 
             for (var i = 0; i < 20; i++) {
                 var elemento = nameProf1[i];
                 var conflitoEncontrado = false;
@@ -243,25 +250,70 @@
                 }
 
                 if (conflitoEncontrado) {
-                    conflito++;
+                    conflito1++;
+                }
+            }
+            //validação segundo com 3,4,5
+            for (var i = 0; i < 20; i++) {
+                var elemento = nameProf2[i];
+                var conflitoEncontrado = false;
+
+                // Loop pelos outros arrays
+                for (var j = 3; j <= 5; j++) {
+                    var outroArray = eval("nameProf" + j);
+
+                    if (elemento === outroArray[i]) {
+                        conflitoEncontrado = true;
+                        break;
+                    }
+                }
+
+                if (conflitoEncontrado) {
+                    conflito2++;
+                }
+            }
+            //validação terceiro com 4,5
+            for (var i = 0; i < 20; i++) {
+                var elemento = nameProf3[i];
+                var conflitoEncontrado = false;
+
+                // Loop pelos outros arrays
+                for (var j = 4; j <= 5; j++) {
+                    var outroArray = eval("nameProf" + j);
+
+                    if (elemento === outroArray[i]) {
+                        conflitoEncontrado = true;
+                        break;
+                    }
+                }
+
+                if (conflitoEncontrado) {
+                    conflito3++;
                 }
             }
 
+            //validação terceiro com 4,5
+            for (var i = 0; i < 20; i++) {
+                if(nameProf4[i] == nameProf5[i]){
+                    conflito4++
+                }
+
+            }
+
+            conflitoTotal = conflito1 + conflito2 + conflito3 + conflito4
+           
             //console.log("Número de conflitos encontrados:", conflito);
             //todos os arrays com nome e materia do professor
             const allPeriods = primeiro_periodo.concat(segundo_periodo, terceiro_periodo, quarto_periodo, quinto_periodo);
-            allPeriods.push(conflito)
+            allPeriods.push(conflitoTotal)
             //console.log(allPeriods)
 
-            //Ordenar os arrays
-
-
             //todas as combinações de horarios em um array
-            const allCombinations =[]
+            const allCombinations = []
             allCombinations.push(allPeriods)
             console.log(allCombinations)
 
-            
+            //Ordenar os arrays
 
 
 
