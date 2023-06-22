@@ -323,8 +323,22 @@
             // arrayNota.push(group)
             //cont.push(contadorValidateFail)
         }
+        
 
         const groups = getUniqueGroups(prof_disc, 4, 10);
+        
+        function sortGroups() {
+            // Ordenar o array groups com base no último número de cada array
+            groups.sort(function (a, b) {
+                const lastNumberA = a[a.length - 1];
+                const lastNumberB = b[b.length - 1];
+                return lastNumberA - lastNumberB;
+            });
+        }
+
+
+
+
             //    const valid = validation(groups)
     </script>
 </head>
