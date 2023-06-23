@@ -152,7 +152,9 @@
         }
 
 
-
+        const allCombinations = []
+        const arrayConflitos = []
+        
 
         function validation(group) {
             let contadorValidateFail = 0
@@ -294,47 +296,48 @@
 
             //validação terceiro com 4,5
             for (var i = 0; i < 20; i++) {
-                if(nameProf4[i] == nameProf5[i]){
+                if (nameProf4[i] == nameProf5[i]) {
                     conflito4++
                 }
 
             }
 
             conflitoTotal = conflito1 + conflito2 + conflito3 + conflito4
-           
-            //console.log("Número de conflitos encontrados:", conflito);
+            arrayConflitos.push(conflitoTotal)
+
             //todos os arrays com nome e materia do professor
             const allPeriods = primeiro_periodo.concat(segundo_periodo, terceiro_periodo, quarto_periodo, quinto_periodo);
             allPeriods.push(conflitoTotal)
-            //console.log(allPeriods)
+
 
             //todas as combinações de horarios em um array
-            const allCombinations = []
+
             allCombinations.push(allPeriods)
-            console.log(allCombinations)
+
+
 
             //Ordenar os arrays
 
+        // Ordenar o array1 em ordem crescente e manter a correspondência com o array2
+        const arraysOrdenados = arrayConflitos.map((valor, indice) => ({ valor, indice }))
+            .sort((a, b) => a.valor - b.valor)
+            .map(elemento => allCombinations[elemento.indice]);
+
+            console.log(arraysOrdenados)
 
 
-
-
-
-            // arrayNota.push(group)
-            //cont.push(contadorValidateFail)
         }
+
         
+
+
+
+
+
 
         const groups = getUniqueGroups(prof_disc, 4, 10);
-        
-        function sortGroups() {
-            // Ordenar o array groups com base no último número de cada array
-            groups.sort(function (a, b) {
-                const lastNumberA = a[a.length - 1];
-                const lastNumberB = b[b.length - 1];
-                return lastNumberA - lastNumberB;
-            });
-        }
+
+
 
 
 
