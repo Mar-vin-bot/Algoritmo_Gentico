@@ -310,22 +310,20 @@
             allPeriods.push(conflitoTotal)
 
 
-            //todas as combinações de horarios em um array
+    
 
             allCombinations.push(allPeriods)
 
+        ordination(arrayConflitos,allCombinations)
 
+        }
 
-            //Ordenar os arrays
-
-        // Ordenar o array1 em ordem crescente e manter a correspondência com o array2
+        function  ordination(arrayConflitos,allCombinations){
         const arraysOrdenados = arrayConflitos.map((valor, indice) => ({ valor, indice }))
             .sort((a, b) => a.valor - b.valor)
             .map(elemento => allCombinations[elemento.indice]);
 
             console.log(arraysOrdenados)
-
-
         }
 
         
