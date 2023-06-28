@@ -13,6 +13,7 @@
     </style>
     <script>
         const prof_disc = [
+
             "Clarimundo-POO1",
             "Clarimundo-POO1",
             "Clarimundo-POO1",
@@ -154,7 +155,10 @@
 
         const allCombinations = []
         const arrayConflitos = []
+        var estoou = []
+
         
+
 
         function validation(group) {
             let contadorValidateFail = 0
@@ -232,7 +236,7 @@
             var conflito2 = 0;
             var conflito3 = 0;
             var conflito4 = 0;
-            //var conflito5 = 0;
+
             var conflitoTotal = 0;
             let nameCop
 
@@ -294,7 +298,7 @@
                 }
             }
 
-            //validação terceiro com 4,5
+            //validação quarto com 5
             for (var i = 0; i < 20; i++) {
                 if (nameProf4[i] == nameProf5[i]) {
                     conflito4++
@@ -310,24 +314,53 @@
             //allPeriods.push(conflitoTotal)
 
 
-    
+            allCombinations.push(allPeriods) //
 
-            allCombinations.push(allPeriods)
 
-        ordination(arrayConflitos,allCombinations)
+            ordination(arrayConflitos, allCombinations)
+
+
+          
 
         }
 
-        function  ordination(arrayConflitos,allCombinations){
-        const arraysOrdenados = arrayConflitos.map((valor, indice) => ({ valor, indice }))
-            .sort((a, b) => a.valor - b.valor)
-            .map(elemento => allCombinations[elemento.indice]);
+                         
+
+       
+
+
+
+        function ordination(arrayConflitos, allCombinations) {
+            const arraysOrdenados = arrayConflitos.map((valor, indice) => ({ valor, indice }))
+                .sort((a, b) => a.valor - b.valor)
+                .map(elemento => allCombinations[elemento.indice]);
 
             console.log(arraysOrdenados)
+
+            
+            
+
         }
 
-        
+        function aleatorio() {
+        var primeiraMetade = Math.floor(Math.random() * 5); // Número aleatório de 0 a 4
+        var todoArray = Math.floor(Math.random() * 10); // Número aleatório de 0 a 9
 
+        console.log(primeiraMetade);
+        console.log(todoArray);
+        }
+
+
+
+        /*
+
+        var arrayPrimeiraMetade = arraysOrdenados[numeroAleatorio1];
+        var outro = arraysOrdenados[numeroAleatorio2];
+
+        console.log(arrayPrimeiraMetade, "sou eu")
+        console.log(outro, "outro")
+
+        */
 
 
 
@@ -336,9 +369,10 @@
         const groups = getUniqueGroups(prof_disc, 4, 10);
 
 
+        oi = aleatorio()
 
-
-
+        aiai = ordination(arrayConflitos, allCombinations)
+        console.log(aiai)
 
             //    const valid = validation(groups)
     </script>
