@@ -157,7 +157,7 @@
         const arrayConflitos = []
         var estoou = []
 
-        
+
 
 
         function validation(group) {
@@ -320,34 +320,24 @@
             ordination(arrayConflitos, allCombinations)
 
 
-          
+
 
         }
-
-                         
-
-       
-
 
 
         function ordination(arrayConflitos, allCombinations) {
-            const arraysOrdenados = arrayConflitos.map((valor, indice) => ({ valor, indice }))
+            return arrayConflitos.map((valor, indice) => ({ valor, indice }))
                 .sort((a, b) => a.valor - b.valor)
                 .map(elemento => allCombinations[elemento.indice]);
 
-            console.log(arraysOrdenados)
-
-            
-            
-
         }
 
-        function aleatorio() {
-        var primeiraMetade = Math.floor(Math.random() * 5); // Número aleatório de 0 a 4
-        var todoArray = Math.floor(Math.random() * 10); // Número aleatório de 0 a 9
+        function aleatorio(num1, num2) {
+            var primeiraMetade = Math.floor(Math.random() * 5); // Número aleatório de 0 a 4
+            var todoArray = Math.floor(Math.random() * 10); // Número aleatório de 0 a 9
 
-        console.log(primeiraMetade);
-        console.log(todoArray);
+            return [primeiraMetade, todoArray];
+
         }
 
 
@@ -366,15 +356,46 @@
 
 
 
+
         const groups = getUniqueGroups(prof_disc, 4, 10);
 
 
-        oi = aleatorio()
+        let [pai, mae] = aleatorio();
+        console.log(pai, "363")
+        console.log(mae, "366")
 
-        aiai = ordination(arrayConflitos, allCombinations)
-        console.log(aiai)
 
-            //    const valid = validation(groups)
+        const arraysOrdenados = ordination(arrayConflitos, allCombinations);
+        console.log(arraysOrdenados)
+
+        let aux1, aux2;
+        children = []
+
+        for (let i = 0; i < arraysOrdenados.length; i++) {
+            aux1 = arraysOrdenados[pai].slice(0, 10).concat(arraysOrdenados[mae].slice(10, 25));
+            aux2 = arraysOrdenados[mae].slice(0, 10).concat(arraysOrdenados[pai].slice(10, 25));
+
+            console.log(aux1, "aux1");
+            console.log(aux2, "aux2");
+
+            children.push(aux1, aux2);
+        }
+
+
+
+
+        console.log(children, "saida")
+
+        //aux2 = arraysOrdenados[mae]
+
+        console.log(aux1, "aux1")
+        console.log(aux2, "aux2")
+        //console.log(aux2, "aux2")
+
+
+
+
+
     </script>
 </head>
 
