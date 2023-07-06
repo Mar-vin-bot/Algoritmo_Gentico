@@ -149,13 +149,14 @@
                     groups.push(group);
                 }
                 validation(groups)
+                const newAllPeriods = []; // Declarar a variável newAllPeriods fora da função getUniqueGroups
             }
         }
 
 
         const allCombinations = []
         const arrayConflitos = []
-        var estoou = []
+       
 
 
 
@@ -313,15 +314,15 @@
             const allPeriods = primeiro_periodo.concat(segundo_periodo, terceiro_periodo, quarto_periodo, quinto_periodo);
             //allPeriods.push(conflitoTotal)
 
+           
+
 
             allCombinations.push(allPeriods) //
 
 
             ordination(arrayConflitos, allCombinations)
 
-
-
-
+            newAllPeriods = allCombinations[1];
         }
 
 
@@ -345,6 +346,7 @@
 
 
 
+        
 
 
 
@@ -352,8 +354,8 @@
 
 
         let [pai, mae] = aleatorio();
-        console.log(pai, "363")
-        console.log(mae, "366")
+        console.log(pai, "sort 1")
+        console.log(mae, "sort 2")
 
 
         const arraysOrdenados = ordination(arrayConflitos, allCombinations);
@@ -362,25 +364,43 @@
         let aux1, aux2;
         children = []
 
-        for (let i = 0; i < arraysOrdenados.length; i++) {
-            aux1 = arraysOrdenados[pai].slice(0, 10).concat(arraysOrdenados[mae].slice(10, 25));
-            aux2 = arraysOrdenados[mae].slice(0, 10).concat(arraysOrdenados[pai].slice(10, 25));
+       
 
-            console.log(aux1, "aux1");
-            console.log(aux2, "aux2");
+        aux1 = arraysOrdenados[pai].slice(0, 10).concat(arraysOrdenados[mae].slice(10, 25));
+        aux2 = arraysOrdenados[mae].slice(0, 10).concat(arraysOrdenados[pai].slice(10, 25));
 
-            children.push(aux1, aux2);
-        }
+        
+
+        children.push(aux1, aux2);
+
+        console.log(aux1, "old")
+       // console.log(aux2, "old")
+        
+
+
+        let posicaoMutacao = Math.floor(Math.random() * 25); // Seleciona uma posição aleatória para a mutação
+        let novoHorario =  Math.floor(Math.random() * 4); // Gera um novo horário aleatório para substituir o horário mutado
+
+        console.log(posicaoMutacao, "-------", novoHorario)
+
+
+        aux1[posicaoMutacao][novoHorario] = newAllPeriods[posicaoMutacao][novoHorario]
+
+        console.log(aux1[posicaoMutacao][novoHorario], "mutação")
+
+
+        console.log(aux1, "new Aux")
+
+        console.log(newAllPeriods[posicaoMutacao][novoHorario], "newALL")
+        
 
 
 
-
-        console.log(children, "saida")
+        console.log(children, "children")
 
         //aux2 = arraysOrdenados[mae]
 
-        console.log(aux1, "aux1")
-        console.log(aux2, "aux2")
+
         //console.log(aux2, "aux2")
 
 
