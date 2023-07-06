@@ -352,51 +352,62 @@
 
         const groups = getUniqueGroups(prof_disc, 4, 10);
 
+        const arraysOrdenados = ordination(arrayConflitos, allCombinations);
+        console.log(arraysOrdenados, "arraysOrdenados")
 
+        
+        // sort cruzamento de individuos
         let [pai, mae] = aleatorio();
         console.log(pai, "sort 1")
         console.log(mae, "sort 2")
-
-
-        const arraysOrdenados = ordination(arrayConflitos, allCombinations);
-        console.log(arraysOrdenados)
-
-        let aux1, aux2;
-        children = []
-
        
-
+        //resultado dos cruzamento de acordo com sort
+        let aux1, aux2;
         aux1 = arraysOrdenados[pai].slice(0, 10).concat(arraysOrdenados[mae].slice(10, 25));
         aux2 = arraysOrdenados[mae].slice(0, 10).concat(arraysOrdenados[pai].slice(10, 25));
 
+        console.log(aux1, "aux1 old")
+        console.log(newAllPeriods, "NEW ALL PERIODS")
         
-
+        children = []
         children.push(aux1, aux2);
+     
 
-        console.log(aux1, "old")
-       // console.log(aux2, "old")
+// Sorteio para a mutação de posição e horário no primeiro array (aux1)
+let posicaoMutacao1 = Math.floor(Math.random() * 25); // Seleciona uma posição aleatória para a mutação no primeiro array
+let novoHorario1 = Math.floor(Math.random() * 4); // Gera um novo horário aleatório para substituir o horário mutado no primeiro array
+
+// Sorteio para a mutação de posição e horário no segundo array (newAllPeriods)
+let posicaoMutacao2 = Math.floor(Math.random() * 25); // Seleciona uma posição aleatória para a mutação no segundo array
+let novoHorario2 = Math.floor(Math.random() * 4); // Gera um novo horário aleatório para substituir o horário mutado no segundo array
+
+console.log(posicaoMutacao1, "-------", novoHorario1, "old");
+console.log(posicaoMutacao2, "-------", novoHorario2, "new");
+
+// Armazena o valor do elemento mutado do primeiro array em auxString1
+var auxString1 = aux1[posicaoMutacao1][novoHorario1];
+console.log(auxString1, "auxString1");
+
+// Armazena o valor do elemento mutado do segundo array em auxString2
+var auxString2 = newAllPeriods[posicaoMutacao2][novoHorario2];
+console.log(auxString2, "auxString2");
+
+// Realiza a mutação, substituindo o elemento no primeiro array pela nova posição e horário
+aux1[posicaoMutacao1][novoHorario1] = auxString2;
+
+// Realiza a mutação, substituindo o elemento no segundo array pela nova posição e horário
+newAllPeriods[posicaoMutacao2][novoHorario2] = auxString1;
+
+console.log(aux1[posicaoMutacao1][novoHorario1], "mutação no primeiro array");
+console.log(newAllPeriods[posicaoMutacao2][novoHorario2], "mutação no segundo array");
+
         
 
-
-        let posicaoMutacao = Math.floor(Math.random() * 25); // Seleciona uma posição aleatória para a mutação
-        let novoHorario =  Math.floor(Math.random() * 4); // Gera um novo horário aleatório para substituir o horário mutado
-
-        console.log(posicaoMutacao, "-------", novoHorario)
+        //console.log(newAllPeriods, "newAllP")
+       //console.log(aux1, " old Aux")
 
 
-        aux1[posicaoMutacao][novoHorario] = newAllPeriods[posicaoMutacao][novoHorario]
-
-        console.log(aux1[posicaoMutacao][novoHorario], "mutação")
-
-
-        console.log(aux1, "new Aux")
-
-        console.log(newAllPeriods[posicaoMutacao][novoHorario], "newALL")
-        
-
-
-
-        console.log(children, "children")
+        //console.log(children, "children")
 
         //aux2 = arraysOrdenados[mae]
 
