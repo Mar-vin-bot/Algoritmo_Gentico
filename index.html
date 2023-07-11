@@ -352,54 +352,55 @@
 
         const groups = getUniqueGroups(prof_disc, 4, 10);
 
+        children = []
         const arraysOrdenados = ordination(arrayConflitos, allCombinations);
         console.log(arraysOrdenados, "arraysOrdenados")
 
+        function cruzamento(arraysOrdenados, newAllPeriods) {
+            // sort cruzamento de individuos
+            let [pai, mae] = aleatorio();
+            console.log(pai, "sort 1")
+            console.log(mae, "sort 2")
 
-        // sort cruzamento de individuos
-        let [pai, mae] = aleatorio();
-        console.log(pai, "sort 1")
-        console.log(mae, "sort 2")
+            //resultado dos cruzamento de acordo com sort
+            let aux1, aux2;
+            aux1 = arraysOrdenados[pai].slice(0, 10).concat(arraysOrdenados[mae].slice(10, 25));
+            aux2 = arraysOrdenados[mae].slice(0, 10).concat(arraysOrdenados[pai].slice(10, 25));
 
-        //resultado dos cruzamento de acordo com sort
-        let aux1, aux2;
-        aux1 = arraysOrdenados[pai].slice(0, 10).concat(arraysOrdenados[mae].slice(10, 25));
-        aux2 = arraysOrdenados[mae].slice(0, 10).concat(arraysOrdenados[pai].slice(10, 25));
+            console.log(aux1, "efetuado o cruzamento")
+            console.log(newAllPeriods, "array que vou tirar fragmento para mutação")
 
-        console.log(aux1, "efetuado o cruzamento")
-        console.log(newAllPeriods, "array que vou tirar fragmento para mutação")
-
-        // children = []
-        //children.push(aux1, aux2);
-
-
-        // gerar numero aleatorio para indididuo e horario
-        let random_ind = Math.floor(Math.random() * 25); //individuo
-        let random_horario = Math.floor(Math.random() * 4); // horario
-
-        //somente para aux
-        let auxRandom = Math.floor(Math.random() * 25); //individuo
-
-        console.log(random_ind, "--", random_horario, "---", auxRandom)
-
-        let stringAux = newAllPeriods[random_ind][random_horario]
-        console.log(stringAux)
-
-        aux1[auxRandom][random_horario] = stringAux
-        console.log(aux1, "new")
+        }
 
 
 
-        //console.log(newAllPeriods, "newAllP")
-       //console.log(aux1, " old Aux")
+
+        function realizarMutacao(array) {
+            // gerar número aleatório para indivíduo e horário
+            const random_ind = Math.floor(Math.random() * 25); // indivíduo
+            const random_horario = Math.floor(Math.random() * 4); // horário
+
+            // somente para aux
+            const auxRandom = Math.floor(Math.random() * 25); // indivíduo
+
+            const stringAux = newAllPeriods[random_ind][random_horario];
+            console.log(stringAux);
+
+            // mutação
+            array[auxRandom][random_horario] = stringAux;
+            console.log(array, "new");
+        }
+        children.push(aux1, aux2);
+
+        //aqui tenho que fazer voltar para gerar mais filhos
+
+        // Chamada da função cruzamento com os parâmetros adequados
+        const resultadoCruzamento = cruzamento(arraysOrdenados, newAllPeriods);
+
+        console.log(children, "chil")
 
 
-        //console.log(children, "children")
 
-        //aux2 = arraysOrdenados[mae]
-
-
-        //console.log(aux2, "aux2")
 
 
 
