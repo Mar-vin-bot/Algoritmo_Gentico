@@ -117,6 +117,7 @@
         ];
         let cont = []
         let arrayNota = []
+        //retorna o array ambaralhado
         function shuffleArray(array) {
             const shuffledArray = [...array];
             for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -307,6 +308,8 @@
 
             }
 
+            //são N individuos
+            //arrayConflitos para poder ordenar do menor para maior
             conflitoTotal = conflito1 + conflito2 + conflito3 + conflito4
             arrayConflitos.push(conflitoTotal)
 
@@ -316,7 +319,7 @@
 
 
 
-
+            //aqui é um array de array. Um array que contem todos os arrays(individuos)
             allCombinations.push(allPeriods) //
 
 
@@ -325,7 +328,7 @@
             newAllPeriods = allCombinations[1];
         }
 
-
+        //Ordena as combinações de períodos com base na quantidade total de conflitos.
         function ordination(arrayConflitos, allCombinations) {
             return arrayConflitos.map((valor, indice) => ({ valor, indice }))
                 .sort((a, b) => a.valor - b.valor)
@@ -333,6 +336,7 @@
 
         }
 
+        //gerar eleatorio para cruzamento
         function aleatorio(num1, num2) {
             var primeiraMetade = Math.floor(Math.random() * 5); // Número aleatório de 0 a 4
             var todoArray = Math.floor(Math.random() * 10); // Número aleatório de 0 a 9
